@@ -10,13 +10,13 @@
 <body class="shower list">
 
 	<header class="caption">
-		<h1>Shower Presentation Engine</h1>
-		<p>Yours Truly, Famous Inc.</p>
+		<h1>Docker 101</h1>
 	</header>
 
 	<section class="slide" id="cover">
 		<h2>Docker 101</h2>
 		<p>Brought to you by <a href="http://demo.docker.life">Norm Ross</a></p>
+		<p>And by <a href="http://demo.docker.life">Char Faragher</a></p>
 		<figure>
 			<img class="cover" src="pictures/docker-facebook.png" alt="Some random docker background">
 		</figure>
@@ -52,8 +52,10 @@
 		<ol>
 			<li>It's not a Virtual Machine</li>
 			<li>But it feels like a virtual machine</li>
-			<li>VMs virtualized hardware for each guest</li>
-			<li>Containers share the Host Kernel</li>
+			<li>VMs virtualize hardware for each guest</li>
+			<li>Containers all share the Host Kernel</li>
+			<li>Containers are isolated from each other like VMs</li>
+			<li>Containers are smaller than VMs</li>
 		</ol>
 	</section>
 	
@@ -70,19 +72,100 @@
 	</section>
 		
 	<section class="slide">
-		<h2>What is docker?</h2>
+		<h2>Docker Benefits</h2>
 		<ol>
-			<li>Works in all modern browsers</li>
-			<li>Themes are separated from engine</li>
-			<li>Fully keyboard accessible</li>
-			<li>Printable to PDF</li>
+			<li>Consistent runtime environments</li>
+			<li>Lightweight deployments</li>
+			<li>Isolation</li>
 		</ol>
-		<p class="note">Shower ['ʃəuə] noun. A person or thing that shows.</p>
 	</section>
 
 	<section class="slide">
+		<h2>Let's Play</h2>
+		<p>Play with docker <a href="https://labs.play-with-docker.com/">https://labs.play-with-docker.com/</a></p>
+		<pre>
+			<code>docker run --rm -it alpine ash</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>What just happened?</h2>
+		<ol>
+			<li>Docker pulled the official image of <a href="https://hub.docker.com/_/alpine/">alpine</a> from docker.com</li>
+			<li>Then it created a container from the image and started it</li>
+			<li>And passed the command 'ash' to the container</li>
+			<li>The -it option allocated a psuedoTTY and attached STDIN which makes the container interactive</li>
+			<li>--rm with remove the container when it exits</li>
+			<li>So now you have a prompt '#' in a lightweight linux alpine container that you can play in</li>
+		</ol>
+	</section>
+
+	<section class="slide">
+		<h2>Try these</h2>
+		<pre>
+			<code>docker run <a href="https://hub.docker.com/_/hello-world/">hello-world</a></code>
+			<code>docker ps</code>
+			<code>docker ps -a</code>
+			<code>docker images</code>
+			<code>docker</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Building an image</h2>
+		<ol>
+			<li>Dockerfile describes the steps to build an image</li>
+			<li><code>docker build . -t myimage</code></li>
+			<li><code>docker run myimage</code></li>
+		</ol>
+	</section>
+	
+	<section class="slide">
+		<h2>Thinking with Portals...I mean Containers</h2>
+		<ol>
+			<li>Need openssl to generate a cert: 
+				<br/><code>docker run -it -v ./certs:/certs tannerfe/alpine-openssl</code></li>
+			<li>Run node: 
+					<br/><code>docker run -it node:9</code>
+					<br/><code>Array(16).join("wat" - 1) + " Watman!"</code>
+			</li>
+			<li>Static server using nginx: 
+					<br/><code>docker run -it -d -p 80 nginx</code>				
+			</li>		
+		</ol>
+	</section>
+
+	<section class="slide">
+		<h2>Logs</h2>
+			<pre>
+				<code>docker run -d --name hello hello-world</code>
+				<code>docker logs hello</code>
+				<code>docker inspect hello</code>
+			</pre>		
+	</section>
+
+	<section class="slide">
+		<h2>Volumes</h2>
+		<pre>
+		</pre>		
+	</section>
+				
+	<section class="slide">
+		<h2>Docker exec</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Docker-compose</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Docker swarm</h2>
+	</section>
+		
+	<section class="slide">
 		<h2>Plain text on your slides</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur <a href="#4">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.</p>
+		<p class="note">Shower ['ʃəuə] noun. A person or thing that shows.</p>
 	</section>
 
 	<section class="slide">
