@@ -43,6 +43,10 @@
 	</section>
 
 	<section class="slide">
+			<h2 class="shout shrink">Quick Demo</h2>
+	</section>
+
+	<section class="slide">
 		<h2>What is docker?</h2>
 		<p>A tool designed to make it easier to create, deploy, and run applications by using containers. </p>
 	</section>
@@ -58,7 +62,7 @@
 			<li>Containers are smaller than VMs</li>
 		</ol>
 	</section>
-	
+
 	<section class="slide">
 		<figure>
 			<img class="cover" src="pictures/vm.png">
@@ -68,6 +72,30 @@
 	<section class="slide">
 		<figure>
 			<img class="cover" src="pictures/containers.png">
+		</figure>				
+	</section>
+				
+	<section class="slide">
+		<h2>Docker concepts/components</h2>
+		<ul>
+			<li>Docker Host</li>
+			<li>Docker Engine (Docker Daemon)</li>
+			<li>Docker Client</li>
+			<li>Docker Containers</li>
+			<li>Docker Images and Dockerfile</li>
+			<li>Docker Registry and Docker Hub</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/clint-host.png">
+		</figure>				
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/daemon.png">
 		</figure>				
 	</section>
 		
@@ -84,26 +112,57 @@
 		<h2>Let's Play</h2>
 		<p>Play with docker <a href="https://labs.play-with-docker.com/">https://labs.play-with-docker.com/</a></p>
 		<pre>
-			<code>docker run --rm -it alpine ash</code>
+			<code>docker run <a href="https://hub.docker.com/_/hello-world/">hello-world</a></code>
 		</pre>
 	</section>
 
 	<section class="slide">
 		<h2>What just happened?</h2>
 		<ol>
-			<li>Docker pulled the official image of <a href="https://hub.docker.com/_/alpine/">alpine</a> from docker.com</li>
-			<li>Then it created a container from the image and started it</li>
-			<li>And passed the command 'ash' to the container</li>
+			<li>Docker pulled the official image of <a href="https://hub.docker.com/_/hello-world/">hello-world</a> from docker.com</li>
+			<li>Then it created a container from the image, attached stdout from your terminal</li>
+			<li>And started the container</li>
+			<li>Hello world ran,  printed stuff and exited, leaving you where you started</li>
+		</ol>
+	</section>
+	
+	<section class="slide">
+			<pre>
+				<code>docker run docker/whalesay cowsay hello</code>
+			</pre>
+	</section>
+
+	<section class="slide">
+		<pre>
+			<code>docker run -it alpine</code>
+		</pre>
+		<ol>
+			<li>Alpint is a very lightweight linux</li>
 			<li>The -it option allocated a psuedoTTY and attached STDIN which makes the container interactive</li>
-			<li>--rm with remove the container when it exits</li>
-			<li>So now you have a prompt '#' in a lightweight linux alpine container that you can play in</li>
+			<li>Try running vi</li>
+			<li>exit</li>
 		</ol>
 	</section>
 
 	<section class="slide">
+		<h2>Logs</h2>
+			<pre>
+				<code>docker run -d --name hello hello-world</code>
+				<code>docker logs hello</code>
+				<code>docker ps</code>
+				<code>docker ps -a</code>
+				<code>docker inspect hello</code>
+			</pre>		
+	</section>
+
+	docker run -d -p80 nginx
+	docker run -d --name mongo  mongo
+	docker run -d --name mongo  mongo
+
+
+	<section class="slide">
 		<h2>Try these</h2>
 		<pre>
-			<code>docker run <a href="https://hub.docker.com/_/hello-world/">hello-world</a></code>
 			<code>docker ps</code>
 			<code>docker ps -a</code>
 			<code>docker images</code>
@@ -111,15 +170,6 @@
 		</pre>
 	</section>
 
-	<section class="slide">
-		<h2>Building an image</h2>
-		<ol>
-			<li>Dockerfile describes the steps to build an image</li>
-			<li><code>docker build . -t myimage</code></li>
-			<li><code>docker run myimage</code></li>
-		</ol>
-	</section>
-	
 	<section class="slide">
 		<h2>Thinking with Portals...I mean Containers</h2>
 		<ol>
@@ -135,18 +185,13 @@
 		</ol>
 	</section>
 
-	<section class="slide">
-		<h2>Logs</h2>
-			<pre>
-				<code>docker run -d --name hello hello-world</code>
-				<code>docker logs hello</code>
-				<code>docker inspect hello</code>
-			</pre>		
-	</section>
 
 	<section class="slide">
 		<h2>Volumes</h2>
 		<pre>
+				<code>git clone https://github.com/docker-demo/demo.git</code>
+				<code>cd demo</code>
+				<code>docker run -v "$(pwd)/python:/scripts" python </code>
 		</pre>		
 	</section>
 				
@@ -154,6 +199,15 @@
 		<h2>Docker exec</h2>
 	</section>
 
+	<section class="slide">
+		<h2>Building an image</h2>
+		<ol>
+			<li>Dockerfile describes the steps to build an image</li>
+			<li><code>docker build . -t myimage</code></li>
+			<li><code>docker run myimage</code></li>
+		</ol>
+	</section>
+	
 	<section class="slide">
 		<h2>Docker-compose</h2>
 	</section>
