@@ -14,26 +14,25 @@
 	</header>
 
 	<section class="slide" id="cover">
-		<h2>Docker 101</h2>
-		<p>Brought to you by <a href="http://demo.docker.life">Norm Ross</a></p>
-		<p>And by <a href="http://demo.docker.life">Char Faragher</a></p>
+		<h2>101</h2>
+		<p>Brought to you by: <a href="http://demo.docker.life">Norm Ross</a> and <a href="http://demo.docker.life">Chad Faragher</a></p>
 		<figure>
 			<img class="cover" src="pictures/docker-facebook.png" alt="Some random docker background">
 		</figure>
 		<style>
 			#cover h2 {
-				margin: 30px 0 0;
+				margin: 240px 0 0;
 				color: black;
 				text-align: center;
-				font-size: 70px;
+				font-size: 100px;
 			}
 
 			#cover p {
-				margin: 10px 0 0;
+				margin: 60px 0 0;
 				text-align: center;
 				color: black;
-				font-style: italic;
-				font-size: 20px;
+				font-style: bold;
+				font-size: 30px;
 			}
 
 			#cover p a {
@@ -48,8 +47,10 @@
 
 	<section class="slide">
 		<h2>What is docker?</h2>
-		<p>A tool designed to make it easier to create, deploy, and run applications by using containers. </p>
-	</section>
+		<blockquote>
+			<p>A tool designed to make it easier to create, deploy, and run applications by using containers. </p>
+		</blockquote>
+</section>
 
 	<section class="slide">
 		<h2>What is a container?</h2>
@@ -105,12 +106,16 @@
 			<li>Consistent runtime environments</li>
 			<li>Lightweight deployments</li>
 			<li>Isolation</li>
+			<li>Quick easy disposible dev/test environments</li>
+			<li>Baremetal performance</li>
 		</ol>
 	</section>
 
 	<section class="slide">
 		<h2>Let's Play</h2>
 		<p>Play with docker <a href="https://labs.play-with-docker.com/">https://labs.play-with-docker.com/</a></p>
+		<p>Login: <b>dockerdemo42</b></p>
+		<p>Start an instance</p>
 		<pre>
 			<code>docker run <a href="https://hub.docker.com/_/hello-world/">hello-world</a></code>
 		</pre>
@@ -119,9 +124,14 @@
 	<section class="slide">
 		<h2>What just happened?</h2>
 		<ol>
-			<li>Docker pulled the official image of <a href="https://hub.docker.com/_/hello-world/">hello-world</a> from docker.com</li>
-			<li>Then it created a container from the image, attached stdout from your terminal</li>
-			<li>And started the container</li>
+			<li>Docker 
+				<ul>
+					<li>pulled the official image of <a href="https://hub.docker.com/_/hello-world/">hello-world</a> from docker.com</li>
+					<li>created a container from the image</li>
+					<li>Attached stdout from your terminal</li>		
+					<li>Started the container</li>
+				</ul>
+			</li>
 			<li>Hello world ran,  printed stuff and exited, leaving you where you started</li>
 		</ol>
 	</section>
@@ -130,57 +140,74 @@
 			<pre>
 				<code>docker run docker/whalesay cowsay hello</code>
 			</pre>
+				<ul>
+					<li><em>docker/whalesay</em> is the image</li>
+					<li><em>cowsay</em> is a command to run</li>
+					<li><em>hello</em> is an arg</li>
+				</ul>
 	</section>
 
 	<section class="slide">
-		<pre>
-			<code>docker run -it alpine</code>
-		</pre>
-		<ol>
-			<li>Alpint is a very lightweight linux</li>
-			<li>The -it option allocated a psuedoTTY and attached STDIN which makes the container interactive</li>
-			<li>Try running vi</li>
+		<h2>Interactive containers</h2>
+		<code>docker run -it alpine</code>
+		<ul>
+			<li><em>alpine</em> is a very lightweight linux</li>
+			<li>The <em>-it</em> option allocated a psuedoTTY and attached STDIN which makes the container interactive</li>
+			<li>The default command for this container is <em>/bin/sh</em> which is <em>ash</em></li>
+			<li>Try running <em>vi</em></li>
 			<li>exit</li>
-		</ol>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Detached containers</h2>
+			<code>docker run foo alpine <br>
+docker ps -a</code>
+		<br>...container ran and command exited leaving it in a stopped state<br>
+		<code>[DON'T DO THIS] docker run alpine tail -f /dev/null</code><br>
+		<code>docker run --name foo -d alpine tail -f /dev/null </code><br>
+		<code>docker run --name bar -it alpine [ctrl pq]</code><br>
+		<code>docker attach bar</code>
 	</section>
 
 	<section class="slide">
 		<h2>Logs</h2>
-			<pre>
-				<code>docker run -d --name hello hello-world</code>
-				<code>docker logs hello</code>
-				<code>docker ps</code>
-				<code>docker ps -a</code>
-				<code>docker inspect hello</code>
-			</pre>		
+<pre><code>		docker run -d --name hello hello-world
+		docker logs hello
+		docker ps
+		docker ps -a
+		docker inspect hello
+	</code></pre>		
 	</section>
 
 	<section class="slide">
 		<h2>Try these</h2>
-		<pre>
-			<code>docker ps</code>
-			<code>docker ps -a</code>
-			<code>docker images</code>
-			<code>docker</code>
+		<pre><code>	docker ps
+	docker ps -a
+	docker images
+	docker container prune
+	docker
+		</code>
 		</pre>
 	</section>
 
 	<section class="slide">
 		<h2>More container operations</h2>
-		<pre>
-			<code>docker stop</code>
-			<code>docker kill</code>
-			<code>docker rm</code>
-			<code>docker prune</code>
-		</pre>
+		<pre><code>	docker stop
+	docker start
+	docker kill
+	docker rm
+	docker stats
+	</code></pre>
+		<p>These commands are all aliases for <b>docker <em>container</em> &lt;command&gt;</b></p>
 	</section>
 
 	<section class="slide">
-		<h2>Thinking with Portals...I mean Containers</h2>
+		<h2>Thinking with Portals... I mean Containers</h2>
 		<ol>
 			<li>Need openssl to generate a cert: 
-				<br/><code>docker run -it -v ./certs:/certs tannerfe/alpine-openssl</code></li>
-			<li>Run node: 
+				<br/><code>docker run -it -v "$(pwd)/certs:/certs" tannerfe/alpine-openssl openssl</code></li>
+			<li>Run specific version of node: 
 					<br/><code>docker run -it node:9</code>
 					<br/><code>Array(16).join("wat" - 1) + " Watman!"</code>
 			</li>
@@ -192,22 +219,44 @@
 
 	<section class="slide">
 		<h2>Volumes</h2>
-		<pre>
-				<code>git clone https://github.com/docker-demo/demo.git</code>
-				<code>cd demo</code>
-				<code>docker run -v "$(pwd)/python:/scripts" python </code>
-		</pre>		
+		<pre><code>	git clone https://github.com/docker-demo/demo.git
+	cd demo/python
+	ls scripts
+	docker run -v "$(pwd)/scripts:/scripts" python 
+	</code></pre>
+	<p align="right"><i>...Nothing happened. Why?</i></p>		
+	</section>
+
+	<section class="slide">
+			<h2>Volumes</h2>
+			<p>It ran python and just exited</p>
+			<pre><code>	docker run -it -v "$(pwd)/scripts:/scripts" python
+	exit()
+	docker run -it -v "$(pwd)/scripts:/scripts" python bash
+	ls /scripts
+		</code></pre>
+	</section>
+	
+	<section class="slide">
+		<h2 class="shout shrink">Intermission</h2>
+		<p>nc towel.blinkenlights.nl 23</p>
 	</section>
 
 	<section class="slide">
 		<h2>Building an image</h2>
 		<ol>
 			<li>Dockerfile describes the steps to build an image</li>
-			<li><code>docker build . -t python-demo</code></li>
-			<li><code>docker run python-demo</code></li>
-			<li><code>docker build https://github.com/docker-demo/demo.git</code></li>
+			<li><pre><code>	docker build . -t python-demo
+	docker run python-demo
+	docker build https://github.com/docker-demo/demo.git</code></li>
 		</ol>
 	</section>
+
+	<section class="slide">
+		<h2>Docker in docker</h2>
+		<code>docker run -it -v /var/run/docker.sock:/var/run/docker.sock</code>
+	</section>
+	
 					
 	<section class="slide">
 		<h2>Docker exec</h2>
