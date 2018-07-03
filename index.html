@@ -23,7 +23,7 @@
 		<style>
 			#cover h2 {
 				margin: 30px 0 0;
-				color: white;
+				color: black;
 				text-align: center;
 				font-size: 70px;
 			}
@@ -31,13 +31,13 @@
 			#cover p {
 				margin: 10px 0 0;
 				text-align: center;
-				color: white;
+				color: black;
 				font-style: italic;
 				font-size: 20px;
 			}
 
 			#cover p a {
-				color: white;
+				color: black;
 			}
 		</style>
 	</section>
@@ -155,11 +155,6 @@
 			</pre>		
 	</section>
 
-	docker run -d -p80 nginx
-	docker run -d --name mongo  mongo
-	docker run -d --name mongo  mongo
-
-
 	<section class="slide">
 		<h2>Try these</h2>
 		<pre>
@@ -167,6 +162,16 @@
 			<code>docker ps -a</code>
 			<code>docker images</code>
 			<code>docker</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>More container operations</h2>
+		<pre>
+			<code>docker stop</code>
+			<code>docker kill</code>
+			<code>docker rm</code>
+			<code>docker prune</code>
 		</pre>
 	</section>
 
@@ -185,7 +190,6 @@
 		</ol>
 	</section>
 
-
 	<section class="slide">
 		<h2>Volumes</h2>
 		<pre>
@@ -194,20 +198,21 @@
 				<code>docker run -v "$(pwd)/python:/scripts" python </code>
 		</pre>		
 	</section>
-				
-	<section class="slide">
-		<h2>Docker exec</h2>
-	</section>
 
 	<section class="slide">
 		<h2>Building an image</h2>
 		<ol>
 			<li>Dockerfile describes the steps to build an image</li>
-			<li><code>docker build . -t myimage</code></li>
-			<li><code>docker run myimage</code></li>
+			<li><code>docker build . -t python-demo</code></li>
+			<li><code>docker run python-demo</code></li>
+			<li><code>docker build https://github.com/docker-demo/demo.git</code></li>
 		</ol>
 	</section>
-	
+					
+	<section class="slide">
+		<h2>Docker exec</h2>
+	</section>
+
 	<section class="slide">
 		<h2>Docker-compose</h2>
 	</section>
