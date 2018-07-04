@@ -161,23 +161,22 @@
 
 	<section class="slide">
 		<h2>Detached containers</h2>
-			<code>docker run foo alpine <br>
-docker ps -a</code>
-		<br>...container ran and command exited leaving it in a stopped state<br>
-		<code>[DON'T DO THIS] docker run alpine tail -f /dev/null</code><br>
-		<code>docker run --name foo -d alpine tail -f /dev/null </code><br>
-		<code>docker run --name bar -it alpine [ctrl pq]</code><br>
-		<code>docker attach bar</code>
+		<pre><code>	docker run foo alpine
+	docker ps -a</code></pre>		...container ran and command exited leaving it in a stopped state
+	<pre><code>	[DON'T DO THIS] docker run alpine tail -f /dev/null
+	docker run --name foo -d alpine tail -f /dev/null
+	docker run --name bar -it alpine [ctrl pq]
+	docker attach bar</code></pre>
 	</section>
 
 	<section class="slide">
 		<h2>Logs</h2>
-<pre><code>		docker run -d --name hello hello-world
-		docker logs hello
-		docker ps
-		docker ps -a
-		docker inspect hello
-	</code></pre>		
+		<pre><code>	docker run -d --name hello hello-world
+	docker logs hello
+	docker ps
+	docker ps -a
+	docker inspect hello
+		</code></pre>		
 	</section>
 
 	<section class="slide">
@@ -199,7 +198,7 @@ docker ps -a</code>
 	docker rm
 	docker stats
 	</code></pre>
-		<p>These commands are all aliases for <b>docker <em>container</em> &lt;command&gt;</b></p>
+	<p>These commands are all aliases for <b>docker <em>container</em> &lt;command&gt;</b></p>
 	</section>
 
 	<section class="slide">
@@ -233,8 +232,8 @@ docker ps -a</code>
 	</section>
 
 	<section class="slide">
-			<h2>Volumes</h2>
-			<p>It ran python and just exited</p>
+			<h2>Volumes (cont'd)</h2>
+			<p><i>...It ran python and then immediately exited</i></p>
 			<pre><code>	docker run -it -v "$(pwd)/scripts:/scripts" python
 	exit()
 	docker run -it -v "$(pwd)/scripts:/scripts" python bash
@@ -244,24 +243,22 @@ docker ps -a</code>
 	
 	<section class="slide">
 		<h2>Building an image</h2>
-		<ul>
-			<li>Dockerfile describes the steps to build an image</li>
-			<li><pre><code>	docker build . -t python-demo
+		<p>Dockerfile describes the steps to build an image</p>
+		<pre><code>	docker build . -t python-demo
 	docker run python-demo
-	docker build https://github.com/docker-demo/demo.git</code></li>
-		</ul>
+	docker build https://github.com/docker-demo/demo.git</code></pre>
 	</section>
 
 	<section class="slide">
 		<h2>Docker Registry</h2>
-		<p>A docker registry is a repository of pre-built docker images. <a href="http://hub.docker.com">hub.docker.com</a> is the public docker registry</p>
-		<ul>
-			<li><code>docker search alpine</code></li>
-			<li><code>docker pull alpine</code></li>
-			<li><code>docker push alpine</code></li>
-			<li><code>docker login</code></li>
-			<li><code>docker tag</code></li>
-		</ul>
+		<p>A docker registry is a repository of pre-built docker images.
+		<br> <a href="http://hub.docker.com">hub.docker.com</a> is the public docker registry</p>
+		<pre><code>	docker search alpine
+	docker pull alpine
+	docker push alpine
+	docker login
+	docker tag
+		</code></pre>
 	</section>
 
 	<section class="slide">
